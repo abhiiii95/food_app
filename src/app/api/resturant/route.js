@@ -5,18 +5,18 @@ import { NextResponse } from "next/server";
 
 
 export async function GET() {
-    // await mongoose.connect(connectionURL,
-    //     { 
-    //         useNewUrlParser: true,
-    //          useCreateIndex: true, 
-    //          useUnifiedTopology: true
-    //          }
-    // )
+    await mongoose.connect(connectionURL,
+        { 
+            useNewUrlParser: true,
+             useCreateIndex: true, 
+             useUnifiedTopology: true
+             }
+    )
     
 
-    // const data = await resturantModel.find()
+    const data = await resturantModel.find()
     return NextResponse.json({
         result :"test",
-        // data
+        data
     })
 }

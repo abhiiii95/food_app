@@ -2,8 +2,8 @@ const { default: mongoose } = require("mongoose");
 
 
 const resturantSchema = new mongoose.Schema({
-    name:String
+    name: String
 })
 
-export const resturantModel= mongoose.models.resturants
- || mongoose.model("resturants", resturantSchema)
+export const resturantModel = mongoose.models.Resturant
+    || mongoose.model("Resturant", resturantSchema);

@@ -7,16 +7,16 @@ import { NextResponse } from "next/server";
 export async function GET() {
     await mongoose.connect(connectionURL,
         { 
-            useNewUrlParser: true,
-             useCreateIndex: true, 
-             useUnifiedTopology: true
+            // useNewUrlParser: true,
+            //  useCreateIndex: true, 
+            //  useUnifiedTopology: true
              }
     )
     
 
     const data = await resturantModel.find()
     return NextResponse.json({
-        result :"test",
+        name :"Himani",
         data
     })
 }

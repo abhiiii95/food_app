@@ -11,13 +11,13 @@ const RasturantPage = () => {
   const [login,setLogin] = useState(true);
   return (
     <>
-    
+    <div className='restroPage'>
       <h1>Resturant logIn/ SignUp Page</h1>
       {
         login ?  <Login /> : <Registration />
       }
       <Button onClick={()=>{setLogin(!login)}}>{login ? "Please Sign Up":"Please Login "}</Button>
-     
+      </div>
       
     </>
   )

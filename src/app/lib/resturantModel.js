@@ -1,9 +1,20 @@
 const { default: mongoose } = require("mongoose");
 
 
-const resturantSchema = new mongoose.Schema({
-    name: String
-})
+const resturantSchema = new mongoose.Schema(
+    {
+        email: String,
+        password: String,
+        name: String,
+        address: String,
+        fullAddress: String,
+        phone: String,
+    },
+    { timestamps: true }
+)
 
-export const resturantModel = mongoose.models.resturants
-    || mongoose.model("Resturant", resturantSchema);
+const resturantModel = mongoose.models.resturants
+    || mongoose.model("resturants", resturantSchema);
+
+// module.exports = resturantModel;
+export { resturantModel };

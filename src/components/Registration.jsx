@@ -1,97 +1,143 @@
-"use client";
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+'use client';
+import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { useRouter } from 'next/navigation';;
+
 
 const Registration = () => {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [cPassword, setCPassword] = useState("");
-  const [city, setCity] = useState("");
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [c_Password, setConfirmPassword] = useState('')
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [fullAddress, setFullAddress] = useState('')
+  const [phone, setPhone] = useState('')
+
+  const router = useRouter()
 
 
-  const handleSubmit = () => {
-    console.log(email, password, cPassword, city, name, address, phone);
-  };
+  async function handleSignUp() {
+    console.log(email, password, c_Password, name, address, fullAddress, phone)
+
+
+    let response = await fetch("http://localhost:3000/api/resturant", {
+      method: "POST",
+      body: JSON.stringify({ email, password, name, address, fullAddress, phone })
+    })
+    response = await response.json()
+    console.log("response: ", response)
+    alert("data save successfully")
+
+    if (response.status === true) {
+
+      let { result } = response
+      delete result.password
+
+      localStorage.setItem("restrurantUser", JSON.stringify(result))
+
+      router.push("/resturant/dashboard")
+
+    }
+    // setEmail('')
+    // setPassword('')
+    // setConfirmPassword('')
+    // setName('')
+    // setAddress('')
+    // setFullAddress('')
+    // setPhone('')
+
+
+  }
 
   return (
-    <div className="registerForm">
+    <div>
       <Form>
-        <Form.Group className="mb-3" >
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
             placeholder="name@example.com"
-            value={email}
             onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
         </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="name@example.com"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" >
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Password</Form.Label>
           <Form.Control
             type="password"
             id="inputPassword5"
             aria-describedby="passwordHelpBlock"
-            value={password}
             onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
         </Form.Group>
-        <Form.Group className="mb-3" >
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Confirm Password</Form.Label>
           <Form.Control
             type="password"
             id="inputPassword5"
             aria-describedby="passwordHelpBlock"
-            value={cPassword}
-            onChange={(e) => setCPassword(e.target.value)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={c_Password}
           />
         </Form.Group>
-        <Form.Group className="mb-3" >
-          <Form.Label>City</Form.Label>
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label htmlFor="inputPassword5">Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="name@example.com"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            id="inputPassword5"
+            aria-describedby="passwordHelpBlock"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
           />
         </Form.Group>
-        <Form.Group className="mb-3" >
-          <Form.Label>Address</Form.Label>
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label htmlFor="inputPassword5">Address</Form.Label>
           <Form.Control
             type="text"
-            placeholder="name@example.com"
-            value={address}
+            id="inputPassword5"
+            aria-describedby="passwordHelpBlock"
             onChange={(e) => setAddress(e.target.value)}
+            value={address}
           />
         </Form.Group>
-        <Form.Group className="mb-3" >
-          <Form.Label>Phone Number</Form.Label>
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label htmlFor="inputPassword5">Full Address</Form.Label>
           <Form.Control
             type="text"
-            placeholder="name@example.com"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            id="inputPassword5"
+            aria-describedby="passwordHelpBlock"
+            onChange={(e) => setFullAddress(e.target.value)}
+            value={fullAddress}
           />
         </Form.Group>
-        <Button variant="outline-primary" onClick={handleSubmit}>
-          Sign Up
-        </Button>{" "}
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label htmlFor="inputPassword5">Phone Number</Form.Label>
+          <Form.Control
+            type="number"
+            id="inputPassword5"
+            aria-describedby="passwordHelpBlock"
+            onChange={(e) => setPhone(e.target.value)}
+            value={phone}
+          />
+        </Form.Group>
+
+        <Button
+          variant="outline-primary"
+          onClick={handleSignUp}
+        >Sign Up</Button>{' '}
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default Registration;
+export default Registration

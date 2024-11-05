@@ -40,15 +40,6 @@ const Registration = () => {
       router.push("/resturant/dashboard")
 
     }
-    // setEmail('')
-    // setPassword('')
-    // setConfirmPassword('')
-    // setName('')
-    // setAddress('')
-    // setFullAddress('')
-    // setPhone('')
-
-
   }
 
   return (

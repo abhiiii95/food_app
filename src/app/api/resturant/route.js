@@ -35,12 +35,21 @@ export async function POST(req) {
         console.log("payload:", payload);
 
         await mongoose.connect(connectionURL)
+let result
 
-        const result = await resturantModel.create(payload);
+        if(payload.login){
+            result= await resturantModel.findOne({
+                email:payload.email,
+                password: payload.password
+            })
+        }
+        else{
+             result = await resturantModel.create(payload);
+        }
+        
         return NextResponse.json({
-            status: true,
-            name: "Himani",
             result,
+            success: true,
         });
 
     } catch (error) {

@@ -13,12 +13,29 @@ const Registration = () => {
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [fullAddress, setFullAddress] = useState('')
-  const [phone, setPhone] = useState('')
+  const [phone, setPhone] = useState('');
+  const [error,setError] = useState(false);
+  const [passwordError,setPasswordError]= useState(false);
+
 
   const router = useRouter()
 
 
   async function handleSignUp() {
+    if(password !== c_Password){
+      setPasswordError(true);
+      return false;
+    }
+    else{
+      setPasswordError(false)
+    }
+    if(!email || !password || !c_Password || !name || !address || !fullAddress || !phone){
+      setError(true);
+      return false;
+    }
+    else{
+      setError(false)
+    }
     console.log(email, password, c_Password, name, address, fullAddress, phone)
 
 
@@ -64,6 +81,9 @@ const Registration = () => {
             value={email}
           />
         </Form.Group>
+        {
+          error && !email && <p className='text-danger'>please enter email</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Password</Form.Label>
@@ -75,6 +95,12 @@ const Registration = () => {
             value={password}
           />
         </Form.Group>
+        {
+          passwordError && <p className='text-danger'>Password and Confirm password not match </p>
+        }
+          {
+          error && !password && <p className='text-danger'>please enter password</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Confirm Password</Form.Label>
@@ -86,6 +112,12 @@ const Registration = () => {
             value={c_Password}
           />
         </Form.Group>
+        {
+          passwordError && <p className='text-danger'>Password and Confirm password not match </p>
+        }
+           {
+          error && !c_Password && <p className='text-danger'>please enter confirm password</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Name</Form.Label>
@@ -97,6 +129,9 @@ const Registration = () => {
             value={name}
           />
         </Form.Group>
+        {
+          error && !name && <p className='text-danger'>please enter name</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Address</Form.Label>
@@ -108,6 +143,9 @@ const Registration = () => {
             value={address}
           />
         </Form.Group>
+        {
+          error && !address && <p className='text-danger'>please enter address</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Full Address</Form.Label>
@@ -119,6 +157,9 @@ const Registration = () => {
             value={fullAddress}
           />
         </Form.Group>
+        {
+          error && !fullAddress && <p className='text-danger'>please enter fullAddress</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Phone Number</Form.Label>
@@ -130,6 +171,10 @@ const Registration = () => {
             value={phone}
           />
         </Form.Group>
+        {
+          error && !phone && <p className='text-danger'>please enter phone</p>
+        }
+
 
         <Button
           variant="outline-primary"

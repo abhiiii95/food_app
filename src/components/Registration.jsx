@@ -13,14 +13,19 @@ const Registration = () => {
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [fullAddress, setFullAddress] = useState('')
-  const [phone, setPhone] = useState('')
-  const [error, setError] = useState(false)
-  const [errorPassword, setErrorPassword] = useState(false)
+
+  const [phone, setPhone] = useState('');
+  const [error,setError] = useState(false);
+  const [passwordError,setPasswordError]= useState(false);
+
+
 
   const router = useRouter()
 
 
   async function handleSignUp() {
+
+
 
     if (password !== c_Password) {
       setErrorPassword(true)
@@ -38,6 +43,7 @@ const Registration = () => {
     else {
       setError(false)
     }
+
 
     console.log(email, password, c_Password, name, address, fullAddress, phone)
 
@@ -79,6 +85,9 @@ const Registration = () => {
             error && !email && <p className='text-danger'> Email field should not be Empty </p>
           }
         </Form.Group>
+        {
+          error && !email && <p className='text-danger'>please enter email</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Password</Form.Label>
@@ -97,6 +106,12 @@ const Registration = () => {
             errorPassword && <p className='text-danger'> Password and confirm password should be same </p>
           }
         </Form.Group>
+        {
+          passwordError && <p className='text-danger'>Password and Confirm password not match </p>
+        }
+          {
+          error && !password && <p className='text-danger'>please enter password</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Confirm Password</Form.Label>
@@ -114,6 +129,12 @@ const Registration = () => {
             errorPassword && <p className='text-danger'> Password and confirm password should be same </p>
           }
         </Form.Group>
+        {
+          passwordError && <p className='text-danger'>Password and Confirm password not match </p>
+        }
+           {
+          error && !c_Password && <p className='text-danger'>please enter confirm password</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Name</Form.Label>
@@ -128,6 +149,9 @@ const Registration = () => {
             error && !name && <p className='text-danger'> Name field should not be Empty </p>
           }
         </Form.Group>
+        {
+          error && !name && <p className='text-danger'>please enter name</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Address</Form.Label>
@@ -142,6 +166,9 @@ const Registration = () => {
             error && !address && <p className='text-danger'> Address field should not be Empty </p>
           }
         </Form.Group>
+        {
+          error && !address && <p className='text-danger'>please enter address</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Full Address</Form.Label>
@@ -156,6 +183,9 @@ const Registration = () => {
             error && !fullAddress && <p className='text-danger'> FullAddress field should not be Empty </p>
           }
         </Form.Group>
+        {
+          error && !fullAddress && <p className='text-danger'>please enter fullAddress</p>
+        }
 
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
           <Form.Label htmlFor="inputPassword5">Phone Number</Form.Label>
@@ -170,6 +200,10 @@ const Registration = () => {
             error && !phone && <p className='text-danger'> Phone field should not be Empty </p>
           }
         </Form.Group>
+        {
+          error && !phone && <p className='text-danger'>please enter phone</p>
+        }
+
 
         <Button
           variant="outline-primary"

@@ -43,8 +43,8 @@ const Registration = () => {
       method: "POST",
       body: JSON.stringify({ email, password, name, address, fullAddress, phone })
     })
-    response = await response.json()
     console.log("response: ", response)
+    response = await response.json()
     alert("data save successfully")
 
     if (response.status === true) {

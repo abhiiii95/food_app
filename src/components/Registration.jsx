@@ -13,29 +13,38 @@ const Registration = () => {
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [fullAddress, setFullAddress] = useState('')
+
   const [phone, setPhone] = useState('');
   const [error,setError] = useState(false);
   const [passwordError,setPasswordError]= useState(false);
+
 
 
   const router = useRouter()
 
 
   async function handleSignUp() {
-    if(password !== c_Password){
-      setPasswordError(true);
-      return false;
+
+
+
+    if (password !== c_Password) {
+      setErrorPassword(true)
+      return false
     }
-    else{
-      setPasswordError(false)
+    else {
+      setErrorPassword(false)
     }
-    if(!email || !password || !c_Password || !name || !address || !fullAddress || !phone){
-      setError(true);
-      return false;
+
+
+    if (!email || !password || !c_Password || !name || !address || !fullAddress || !phone) {
+      setError(true)
+      return false
     }
-    else{
+    else {
       setError(false)
     }
+
+
     console.log(email, password, c_Password, name, address, fullAddress, phone)
 
 
@@ -57,15 +66,6 @@ const Registration = () => {
       router.push("/resturant/dashboard")
 
     }
-    // setEmail('')
-    // setPassword('')
-    // setConfirmPassword('')
-    // setName('')
-    // setAddress('')
-    // setFullAddress('')
-    // setPhone('')
-
-
   }
 
   return (
@@ -80,6 +80,9 @@ const Registration = () => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
+          {
+            error && !email && <p className='text-danger'> Email field should not be Empty </p>
+          }
         </Form.Group>
         {
           error && !email && <p className='text-danger'>please enter email</p>
@@ -93,7 +96,14 @@ const Registration = () => {
             aria-describedby="passwordHelpBlock"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+
           />
+          {
+            error && !password && <p className='text-danger'> Password field should not be Empty </p>
+          }
+          {
+            errorPassword && <p className='text-danger'> Password and confirm password should be same </p>
+          }
         </Form.Group>
         {
           passwordError && <p className='text-danger'>Password and Confirm password not match </p>
@@ -111,6 +121,12 @@ const Registration = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             value={c_Password}
           />
+          {
+            error && !c_Password && <p className='text-danger'> Please Provide your password again for the verification.</p>
+          }
+          {
+            errorPassword && <p className='text-danger'> Password and confirm password should be same </p>
+          }
         </Form.Group>
         {
           passwordError && <p className='text-danger'>Password and Confirm password not match </p>
@@ -128,6 +144,9 @@ const Registration = () => {
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
+          {
+            error && !name && <p className='text-danger'> Name field should not be Empty </p>
+          }
         </Form.Group>
         {
           error && !name && <p className='text-danger'>please enter name</p>
@@ -142,6 +161,9 @@ const Registration = () => {
             onChange={(e) => setAddress(e.target.value)}
             value={address}
           />
+          {
+            error && !address && <p className='text-danger'> Address field should not be Empty </p>
+          }
         </Form.Group>
         {
           error && !address && <p className='text-danger'>please enter address</p>
@@ -156,6 +178,9 @@ const Registration = () => {
             onChange={(e) => setFullAddress(e.target.value)}
             value={fullAddress}
           />
+          {
+            error && !fullAddress && <p className='text-danger'> FullAddress field should not be Empty </p>
+          }
         </Form.Group>
         {
           error && !fullAddress && <p className='text-danger'>please enter fullAddress</p>
@@ -170,6 +195,9 @@ const Registration = () => {
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
           />
+          {
+            error && !phone && <p className='text-danger'> Phone field should not be Empty </p>
+          }
         </Form.Group>
         {
           error && !phone && <p className='text-danger'>please enter phone</p>

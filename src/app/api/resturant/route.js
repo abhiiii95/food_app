@@ -9,12 +9,10 @@ export async function GET() {
     try {
 
         await mongoose.connect(connectionURL)
-
-
         const data = await resturantModel.find()
         return NextResponse.json({
             name: "Himani",
-            data
+            // data
         })
     }
     catch (error) {

@@ -1,3 +1,4 @@
+
 const { default: mongoose } = require("mongoose");
 
 const foodSchema = new mongoose.Schema({
@@ -5,10 +6,12 @@ const foodSchema = new mongoose.Schema({
     price: Number,
     img_path: String,
     description: String,
-    resto_id: { type: mongoose.Schema.Types.ObjectId, ref: "resturantModel" } // Added ref for better relation
+    resto_id: { type: mongoose.Schema.Types.ObjectId, ref: "resturantModel" }
 });
 
-// Export or create model if not exists
+// Check if model exists, otherwise create it
 const Food = mongoose.models.Food || mongoose.model("Food", foodSchema);
 
-module.exports = Food;
+  // ✅ Default export
+export { Food };
+

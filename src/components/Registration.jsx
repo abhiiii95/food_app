@@ -16,7 +16,7 @@ const Registration = () => {
 
   const [phone, setPhone] = useState('');
   const [error,setError] = useState(false);
-  const [passwordError,setPasswordError]= useState(false);
+  const [passwordError,setErrorPassword]= useState(false);
 
 
 
@@ -52,11 +52,19 @@ const Registration = () => {
       method: "POST",
       body: JSON.stringify({ email, password, name, address, fullAddress, phone })
     })
+    response = await response.json();
+    alert("data save successfully");
+    setEmail("");
+    setName("");
+    setPassword("");
+    setConfirmPassword("");
+    setAddress("");
+    setFullAddress("");
+    setPhone("")
     console.log("response: ", response)
-    response = await response.json()
-    alert("data save successfully")
 
-    if (response.status === true) {
+
+    if (response.success === true) {
 
       let { result } = response
       delete result.password
@@ -67,7 +75,7 @@ const Registration = () => {
 
     }
   }
-
+console.log("hello")
   return (
     <div>
       <Form>
@@ -102,7 +110,7 @@ const Registration = () => {
             error && !password && <p className='text-danger'> Password field should not be Empty </p>
           }
           {
-            errorPassword && <p className='text-danger'> Password and confirm password should be same </p>
+            passwordError && <p className='text-danger'> Password and confirm password should be same </p>
           }
         </Form.Group>
         {
@@ -125,7 +133,7 @@ const Registration = () => {
             error && !c_Password && <p className='text-danger'> Please Provide your password again for the verification.</p>
           }
           {
-            errorPassword && <p className='text-danger'> Password and confirm password should be same </p>
+            passwordError && <p className='text-danger'> Password and confirm password should be same </p>
           }
         </Form.Group>
         {

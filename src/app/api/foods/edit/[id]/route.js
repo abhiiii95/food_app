@@ -1,5 +1,5 @@
 import { connectionURL } from "@/app/lib/db";
-import Food from "@/app/lib/foodsModel";
+import {Food} from "@/app/lib/foodsModel";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 

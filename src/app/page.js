@@ -1,14 +1,14 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
+import MainHeader from "@/components/MainHeader/MainHeader";
+import HomeBanner from "@/components/HomeModule/HomeBanner/HomeBanner";
 
 export default function Home() {
   return (
     <>
-    <h1>Food Web App</h1>
-    <Link href="/resturant">
-    Resturant Page
-    </Link>
+    <MainHeader />
+    <HomeBanner />
     </>
   );
 }

@@ -1,15 +1,13 @@
 import { connectionURL } from "@/app/lib/db";
-import Food from "@/app/lib/foodsModel";
+import {Food} from "../../../lib/foodsModel";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function GET(request,content){
     const id = content.params.id;
-    console.log(id,"id")
     let success = false;
     await mongoose.connect(connectionURL);
     const result  = await Food.find({resto_id:id});
-    console.log(result)
     if(result){
         success = true
     }
@@ -17,7 +15,6 @@ export async function GET(request,content){
 }
 export async function DELETE(request,content){
     const id = content.params.id;
-    console.log(id,"id")
     let success = false;
     await mongoose.connect(connectionURL);
     const result  = await Food.deleteOne({_id:id});

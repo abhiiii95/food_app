@@ -8,5 +8,5 @@ export async function GET(){
     let result = await resturantModel.find();
     result = result.map((item)=>item.address.toUpperCase());
     result = [...new Set(result)]
-    return NextResponse.json({success:true,result})
+    return NextResponse.json({success:true,result:result})
 }

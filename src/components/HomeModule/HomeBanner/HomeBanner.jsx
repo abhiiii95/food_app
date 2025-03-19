@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from './homeBanner.module.scss';
 
-const HomeBanner = () => {
+const HomeBanner = ({restroList}) => {
   const [location,setLocation] = useState([]);
   const [selectedlocation,setSelectedlocation]=useState("Select Location");
-  const [showlocation,setShowlocation]= useState(false);
+  const [showlocation,setShowlocation]= useState(false);  
     useEffect(()=>{
       locationItem()
     },[])
@@ -21,7 +21,7 @@ const HomeBanner = () => {
     const handleSelected = (item)=>{
       setSelectedlocation(item);
       setShowlocation(false);
-
+      restroList({location:item})
     }
   
   return (
@@ -37,7 +37,7 @@ const HomeBanner = () => {
             { location.map((item)=><li onClick={()=>handleSelected(item)}>{item}</li>)}
             </ul>
             }
-            <input type="text" placeholder="Enter Food or resturant name" className={`${styles.input} ${styles?.input2}`} />
+            <input type="text" placeholder="Enter Food or resturant name" onChange={(e)=>{restroList({restaurant:e.target.value})}} className={`${styles.input} ${styles?.input2}`} />
             <button type="submit" className={styles.button}>Submit</button>
           </form>
         </div>

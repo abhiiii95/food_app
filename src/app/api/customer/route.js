@@ -42,8 +42,7 @@ export async function GET(request) {
 
     let addressCity = queryParams.get("location");
     let restaurant = queryParams.get("restaurant");
-    console.log("addressCity: ", addressCity);
-    console.log("restaurant: ", restaurant);
+    
 
     let filter = {};
 

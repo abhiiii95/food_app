@@ -1,0 +1,12 @@
+.listWrapper{
+    .cardWrapper{
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #eee;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        background-color: #eee;
+    }
+}

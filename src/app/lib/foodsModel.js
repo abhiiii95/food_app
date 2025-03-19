@@ -1,17 +1,18 @@
-
 const { default: mongoose } = require("mongoose");
 
-const foodSchema = new mongoose.Schema({
+const foodSchema = new mongoose.Schema(
+  {
     name: String,
     price: Number,
     img_path: String,
     description: String,
-    resto_id: { type: mongoose.Schema.Types.ObjectId, ref: "resturantModel" }
-});
+    resto_id: { type: mongoose.Schema.Types.ObjectId, ref: "resturantModel" },
+  },
+  { timestamps: true }
+);
 
 // Check if model exists, otherwise create it
 const Food = mongoose.models.Food || mongoose.model("Food", foodSchema);
 
-  // ✅ Default export
+// ✅ Default export
 export { Food };
-

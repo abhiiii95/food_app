@@ -1,12 +1,14 @@
+import HotelDetail from '@/components/HotelDetailModule/HotelDetail';
 import React from 'react';
 
-function Page({ params }) {
-    const { name } = params;
+function Page(props) {
+    const { name } = props.params;
 
     return (
-        <div>
-            <h1>{`${name}`}</h1>
-        </div>
+        <>
+        <HotelDetail name={name}  prop={props}/>
+            {/* <h1>{`${name}`}</h1> */}
+        </>
     );
 }
 

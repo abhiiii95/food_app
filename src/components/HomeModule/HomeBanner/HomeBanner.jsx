@@ -37,7 +37,7 @@ const HomeBanner = ({restroList}) => {
             { location.map((item)=><li onClick={()=>handleSelected(item)}>{item}</li>)}
             </ul>
             }
-            <input type="text" placeholder="Enter Food or resturant name" onChange={(e)=>{restroList({restaurant:e.target.value})}} className={`${styles.input} ${styles?.input2}`} />
+            <input type="text" placeholder="Enter Food or resturant name" onChange={(e)=>{restroList({restaurant:e.target.va})}} className={`${styles.input} ${styles?.input2}`} />
             <button type="submit" className={styles.button}>Submit</button>
           </form>
         </div>

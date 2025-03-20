@@ -5,10 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useRouter } from 'next/navigation';
 
 const RestroList = ({ list, setList }) => {
-
-
   const router = useRouter();
-
   return (
     <>
       <section className={styles?.listWrapper}>
@@ -21,7 +18,7 @@ const RestroList = ({ list, setList }) => {
 
                     <Col lg={4} key={index}>
                       <div className={styles?.cardWrapper}
-                        onClick={() => router.push(`/explore/${item.name}`)}>
+                        onClick={() => router.push(`/explore/${item.name}`+"?id="+item?._id)}>
                         <p>{item.name}</p>
                         <p>Contact: {item.phone}</p>
                         <p>{item.address}</p>
